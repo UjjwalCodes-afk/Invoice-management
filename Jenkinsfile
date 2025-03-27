@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NODEJS_HOME= tool 'NodeJs 20'
+        NODEJS_HOME = tool 'NodeJs 20'
         PATH = "${NODEJS_HOME}/bin:${env.PATH}"
     }
     stages {
@@ -15,17 +15,22 @@ pipeline {
                 bat 'npm install'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t invoice-management .'
+            }
+        }
         stage('Run Containers') {
             steps {
                 bat 'docker-compose up -d'
             }
         }
-        stage('Run Tests'){
+        stage('Run Tests') {
             steps {
                 bat 'npm test'
             }
         }
-        stage('Stop Containers'){
+        stage('Stop Containers') {
             steps {
                 bat 'docker-compose down'
             }
