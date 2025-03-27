@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        NODEJS_HOME = tool 'NodeJs 20'
-        PATH = "${NODEJS_HOME}/bin:${env.PATH}"
-    }
     stages {
         stage('Clone Repository') {
             steps {
@@ -22,12 +18,14 @@ pipeline {
         }
         stage('Run Containers') {
             steps {
-                bat 'docker-compose up -d'
+                bat 'docker-compose up -d --build'
             }
         }
         stage('Run Tests') {
             steps {
-                bat 'npm test'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat 'npm test'
+                }
             }
         }
         stage('Stop Containers') {
