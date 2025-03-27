@@ -1,13 +1,13 @@
-pipeline{
+pipeline {
     agent any
-    enviroment{
+    environment {
         NODEJS_HOME= tool 'NodeJs 20'
         PATH = "${NODEJS_HOME}/bin:${env.PATH}"
     }
-    stages{
+    stages {
         stage('Clone Repository') {
             steps {
-                git branch : 'main', url: 'https://github.com/UjjwalCodes-afk/Invoice-management'
+                git branch: 'main', url: 'https://github.com/UjjwalCodes-afk/Invoice-management'
             }
         }
         stage('Install Dependencies') {
@@ -31,7 +31,7 @@ pipeline{
             }
         }
     }
-    post{
+    post {
         success {
             echo '✅ Build and Deployment Successful!'
         }
