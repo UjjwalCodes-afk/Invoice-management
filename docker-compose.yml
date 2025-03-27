@@ -11,7 +11,7 @@ services:
       - .env
     volumes:
       - .:/app
-      - /app/node_modules
+      - node_modules:/app/node_modules
     depends_on:
       - mongo
 
@@ -24,4 +24,5 @@ services:
       - mongo-data:/data/db
 
 volumes:
-  mongo-data
+  mongo-data:
+  node_modules:
