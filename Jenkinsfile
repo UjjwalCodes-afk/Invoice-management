@@ -12,22 +12,22 @@ pipeline {
         }
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         stage('Run Containers') {
             steps {
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             }
         }
         stage('Run Tests'){
             steps {
-                sh 'npm test'
+                bat 'npm test'
             }
         }
         stage('Stop Containers'){
             steps {
-                sh 'docker-compose down'
+                bat 'docker-compose down'
             }
         }
     }
