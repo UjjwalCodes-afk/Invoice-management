@@ -10,7 +10,7 @@ app.use(express.json());
 connectDb();
 
 
-///routes of invoices
+///routes of invoicess
 app.use('/api',invoiceRouter);
 
 const port = process.env.PORT || 9001
