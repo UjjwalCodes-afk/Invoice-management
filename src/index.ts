@@ -20,7 +20,7 @@ app.use('/api', invoiceRouter);
 //auth Routes
 app.use('/api/auth', authRoute);
 
-//role based accesss
+//role based access
 app.use('/api',protectedRoute);
 
 //csv-excels
