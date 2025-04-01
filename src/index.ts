@@ -23,7 +23,7 @@ app.use('/api/auth', authRoute);
 //role based accesss
 app.use('/api',protectedRoute);
 
-//csv-excels
+//csv-excel
 app.use('/data', csv);
 
 // ✅ Use express.raw() for the webhook route
